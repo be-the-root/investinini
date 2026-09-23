@@ -64,31 +64,28 @@ body {
 }
 
 .button {
-
-
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.button button {
+.button a {
+    display: inline-block;
     padding: 12px 32px;
     font-family: Arial, sans-serif;
     font-size: 1rem;
     font-weight: bold;
     letter-spacing: 2px;
     text-transform: uppercase;
+    text-decoration: none;
     color: #00c6ff;
     background: transparent;
     border: 2px solid #00c6ff;
     border-radius: 8px;
-    cursor: pointer;
     transition: all 0.3s ease;
 }
 
-.button button:hover {
-
-
+.button a:hover {
     background: #00c6ff;
     color: #060a29;
     box-shadow: 0 0 20px rgba(0, 198, 255, 0.5);
