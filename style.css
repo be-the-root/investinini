@@ -124,3 +124,12 @@ body::before {
     }
 }
 
+/*just found out that i can make the curser crosshair lol */
+
+body {
+    cursor: crosshair;
+}
+
+.button button {
+    cursor: pointer;
+}
