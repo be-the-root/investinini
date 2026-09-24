@@ -10,7 +10,7 @@ body {
     align-items: center;
     gap: 1.5rem;
     cursor: crosshair;
-    
+
 }
 
 
@@ -101,7 +101,11 @@ body::before {
 }
 
 .heading h1 {
-    animation: fadeUp 0.9s ease-out both;
+    background-image: linear-gradient(to bottom, #ffe9a8, #f5b642);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    -webkit-text-fill-color: transparent;
 }
 
 @keyframes fadeUp {
