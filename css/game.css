@@ -130,7 +130,7 @@ text-decoration: none;
     animation: breathe 6s ease-in-out infinite;
 
 
-    
+
 }
 
 @keyframes breathe {
@@ -321,5 +321,41 @@ text-decoration: none;
 
     
 }
+
+.deduction__option:hover {
+
+
+    border-color: #f5b642;
+    color: #f5b642;
+    background: rgba(245, 182, 66, 0.08);
+}
+
+.deduction__option--wrong {
+
+
+    animation: shake 0.4s ease;
+    border-color: #d64545;
+    color: #d64545;
+}
+
+@keyframes shake {
+
+
+    0%, 100% { transform: translateX(0); }
+    25%      { transform: translateX(-6px); }
+    75%      { transform: translateX(6px); }
+}
+
+.deduction__feedback {
+
+
+    
+    margin: 1rem 0 0;
+    font-size: 0.85rem;
+    color: #8a8a95;
+    min-height: 1.2em;
+    font-style: italic;
+}
+
 
 
