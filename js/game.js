@@ -9,7 +9,6 @@ const CLUES = [
     },
 
 
-
     {
         id: "lens",
         label: "Fresnel Lens",
@@ -18,7 +17,6 @@ const CLUES = [
         title: "The Fresnel Lens",
         body: "The lens itself is undamaged — every prism intact.\n\nBut the rotation mechanism has been disengaged. The lens is fixed, pointed south-southwest.\n\nA working lighthouse sweeps 360°. This one stopped facing a single direction."
     },
-
 
 
     {
@@ -39,7 +37,6 @@ const CLUES = [
         title: "The Tide Chart",
         body: "This week's tides, marked in pencil.\n\nAt the bottom, in the keeper's hand: 'South reef exposed — 03:40. Low water.'\n\nThe time is underlined twice."
     },
-
 
 
     {
@@ -98,7 +95,7 @@ const panelTag = document.getElementById("panel-tag");
 
 
 
-const panelTitle = document.getElementByIdmentById("panel-title");
+const panelTitle = document.getElementById("panel-title");
 
 const panelBody = document.getElementById("panel-body");
 
@@ -129,7 +126,7 @@ CLUES.forEach(function (clue) {
     btn.textContent = clue.label;
     btn.style.left = clue.x;
     btn.style.top = clue.y;
-    btn.dataset.id = CSSFontFeatureValuesRule.id;
+    btn.dataset.id = clue.id;
 
 
 
@@ -175,7 +172,7 @@ panelClose.addEventListener("click", function () {
 
 
 function addToJournal(clue) {
-    const empty = journalList.querySelectoror(".journal__empty");
+    const empty = journalList.querySelector(".journal__empty");
     if (empty) {
         empty.remove();
     }
@@ -197,3 +194,46 @@ function updateCount() {
     countEl.textContent = found.size + " / " + TOTAL_CLUES;
 }
 
+
+
+
+function checkUnlock() {
+    if (found.size >= TOTAL_CLUES && deductionEl.hidden) {
+        setTimeout(openDeduction, 600);
+    }
+}
+
+function openDeduction() {
+    deductionEl.hidden = false;
+    promptEl.textContent = DEDUCTION.prompt;
+    optionsEl.innerHTML = "";
+
+    DEDUCTION.options.forEach(function (opt, i) {
+        const btn = document.createElement("button");
+        btn.className = "deduction__option";
+        btn.textContent = opt;
+        btn.addEventListener("click", function () {
+            submitAnswer(i, btn);
+        });
+        optionsEl.appendChild(btn);
+    });
+
+    deductionEl.scrollIntoView({ behavior: "smooth", block: "end" });
+}
+
+function submitAnswer(index, btn) {
+    if (solved) return;
+
+    if (index === DEDUCTION.correct) {
+        solved = true;
+        endingTitle.textContent = DEDUCTION.successTitle;
+        endingBody.textContent = DEDUCTION.successBody;
+        endingEl.hidden = false;
+    } else {
+        btn.classList.add("deduction__option--wrong");
+        feedbackEl.textContent = "That doesn't match the evidence. Read the field notes again.";
+        setTimeout(function () {
+            btn.classList.remove("deduction__option--wrong");
+        }, 500);
+    }
+}
