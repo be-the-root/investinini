@@ -1,0 +1,42 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #060a29, #000000) fixed;
+    font-family: Arial, sans-serif;
+    color: #e6e6ea;
+}
+
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(0, 198, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 198, 255, 0.05) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #4caf7d;
+    box-shadow: 0 0 6px #4caf7d;
+}
+
+::selection {
+    background: #00c6ff;
+    color: #060a29;
+}
+
+body{
+    cursor: crosshair;
+}
