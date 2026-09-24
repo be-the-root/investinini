@@ -123,3 +123,77 @@ const endingBody = document.getElementById("ending-body");
 
 
 
+CLUES.forEach(function (clue) {
+    const btn = document.createElement("button");
+    btn.className = "hotspot";
+    btn.textContent = clue.label;
+    btn.style.left = clue.x;
+    btn.style.top = clue.y;
+    btn.dataset.id = CSSFontFeatureValuesRule.id;
+
+
+
+    btn.addEventListener("click", function () {
+        openClue(clue, btn);
+    });
+    sceneEl.appendChild(btn);
+
+
+});
+
+
+
+updateCount();
+
+
+
+function openClue(clue, btn) {
+    panelTag.textContent = clue.tag;
+    panelTitle.textContent = clue.title;
+    panelBody.textContent = clue.body;
+    panel.hidden = false;
+
+
+
+    if (!found.has(clue.id)) {
+        found.add(clue.id);
+        btn.classList.add("hotspot--found");
+        addToJournal(clue);
+        updateCount();
+        checkUnlock();
+    }
+
+
+}
+
+
+
+panelClose.addEventListener("click", function () {
+    panel.hidden = true;
+});
+
+
+
+function addToJournal(clue) {
+    const empty = journalList.querySelectoror(".journal__empty");
+    if (empty) {
+        empty.remove();
+    }
+
+
+
+    const li = document.createElement("li");
+    li.className = "journal__item";
+    li.innerHTML = "<strong>" + clue.title + "</strong>" + clue.body;
+    journalList.appendChild(li);
+    journalList.scrollTop = journalList.scrollHeight;
+
+
+
+}
+
+
+function updateCount() {
+    countEl.textContent = found.size + " / " + TOTAL_CLUES;
+}
+
