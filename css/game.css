@@ -1,0 +1,70 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+body{
+    background: #000000;
+    margin: 0; padding: 0;
+    color: white;
+    font-family: 'VT323', monospace;
+    height: 100vh;
+    overflow: hidden;
+
+}
+
+.game-container{
+    display: flex;
+    width: 100%; height: 100vh;
+
+}
+
+.left-side{
+   width: 75%;
+   height: 100%;
+   display: flex;
+   flex-direction: column;
+   min-height: 0;
+}
+
+.question-window{
+   height: 70%;
+   width: 100%;
+
+   border-bottom: 1px solid #555555;
+   box-sizing: border-box;
+   padding: 20px;
+   display: flex; justify-content: center;
+   align-items: center;
+    overflow-y: auto;
+    min-height: 0;
+}
+
+.hint-window{
+    height: 30%;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex; justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    min-height: 0;
+
+}
+
+.evidence-window{
+    width: 25%;
+    height: 100%;
+
+    border-left: 1px solid #555555;
+    box-sizing: border-box;
+    padding: 20px;
+    display: flex; justify-content: center;
+    align-items: center;
+    overflow-y: auto;
+    flex-direction: column;
+
+}
+
+p1{
+    font-size: 1.8rem;
+    color: #aaaaaa;
+    text-align: center;
+}
