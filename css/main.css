@@ -1,8 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
 body{
 
     background: linear-gradient(180deg, #0e0d0d, #000000);
+    margin: 0; 
+    padding: 0;
+    font-family: 'VT323', monospace;
+    color: white;
+    height: 100vh;
 
+
+    overflow: hidden;
+    cursor: crosshair;
 }
+
+
 .mainhead{
 
     font-size: large;
@@ -10,30 +22,94 @@ body{
     align-items: center;
     align-content: center;
     display: flex;
-    justify-content: center;
-    flex-direction: column;
+    justify-content: center; flex-direction: column;
+    height: 100%;
+    width: 100%;
+
+} 
 
 
-}
 
 p1{
 
     margin-top: 20px;
     margin-bottom: 30px;
     color: beige;
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+} 
 
-}
+
+
 h1{
    
-    margin-top: 200px;
-    text-shadow: 20px;
+    margin-top: 0px;
+    text-shadow: 0px 4px 15px rgba(0, 0, 0, 0.8);
     box-shadow: none;
-    font-size: 60px;
-    font-weight: 10px;
+    font-size: 45px;
+    font-weight: 300;
     font-style:normal;
-    background: linear-gradient(0deg, #000000, #ffffff);
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
+    font-family: 'Press Start 2P', cursive;
+    
+    
+}
 
+.btn {
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    padding: 10px 30px;
+    background-color: #313131;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+
+}
+
+.btn:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+.btn:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+.btn2 {
+    font-family: 'VT323', monospace;
+    font-size: 1.5rem;
+    padding: 10px 30px;
+    background-color: #313131;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+    margin-top: 20px;
+}
+
+.btn2:hover {
+    background-color: #ffffff;
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 6px 12px rgba(255, 255, 255, 0.2);
+}
+
+.btn2:active {
+    transform: translateY(1px) scale(0.98);
+}
+
+#instruction-screen {
+   display: none;
+   flex-direction: column;
+   justify-content: center; 
+
+   align-items: center;
+   height: 100%;
+
+   width: 100%;
+   text-align: center;
 }
