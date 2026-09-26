@@ -17,6 +17,11 @@
     var currentHint = null;
     var collectedCount = 0;
 
+    var questionContainer = document.getElementById("question-container");
+    var popup = document.getElementById("result-popup");
+    var popupTitle = document.getElementById("popup-title");
+    var popupBtn = document.getElementById("popup-btn");
+
     lightBtn.onclick = function() {
       clickCount++;
       if (clickCount == 10) {
@@ -63,6 +68,37 @@
             
             if (collectedCount == 4) {
                 hintsBox.style.display = "none";
+                showQuestion();
             }
         }
     }
+
+    var showQuestion = function() {
+        hintText.innerText = "analyze the hints and answer the question";
+        questionContainer.style.display = "flex";
+    }
+
+    var handleAnswer = function(isCorrect) {
+        popup.style.display = "flex";
+        if (isCorrect) {
+            popupTitle.innerText = "correct";
+            popupTitle.className = "correct";
+            popupBtn.innerText = "next";
+            popupBtn.onclick = function() {
+                console.log("go to next level");
+                popup.style.display = "none";
+            }
+        } else {
+            popupTitle.innerText = "u died";
+            popupTitle.className = "";
+            popupBtn.innerText = "restart";
+            popupBtn.onclick = function() {
+                window.location.reload();
+            }
+        }
+    }
+
+    document.getElementById("opt1").onclick = function() { handleAnswer(false); }
+    document.getElementById("opt2").onclick = function() { handleAnswer(true); }
+    document.getElementById("opt3").onclick = function() { handleAnswer(false); }
+    document.getElementById("opt4").onclick = function() { handleAnswer(false); }
