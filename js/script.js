@@ -9,5 +9,5 @@ var btn2 = document.getElementById("continue-btn2");
     }
 
     btn2.onclick = function() {
-    inst.style.display = "none";
+    window.location.href = "game.html";
     }
