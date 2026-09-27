@@ -8,17 +8,84 @@
 </head>
 <body>
 
+<div class="static-overlay"></div>
+<div class="vignette"></div>
+<div class="glitch-overlay" id="glitch1"></div>
+
+<div id="loading-screen">
+  <div class="loading-text">loading</div>
+  <div class="loading-bar-container">
+    <div class="loading-bar" id="load-bar"></div>
+  </div>
+  <div class="loading-tip" id="load-tip">do not blink</div>
+</div>
+
+<div id="menu-screen">
+
+  <h1 id="menu-title">INVESTNINI</h1>
+
+  <p1 class="menu-subtitle">a game about light and what hides behind it</p1>
+
+  <div class="menu-buttons">
+    <button class="btn menu-btn" id="menu-start">start</button>
+    <button class="btn menu-btn" id="menu-settings">settings</button>
+    <button class="btn menu-btn" id="menu-credits">credits</button>
+  </div>
+
+  <div class="menu-footer">
+    <span id="menu-footer-text">v 0.3.0</span>
+  </div>
+
+</div>
+
+<div id="settings-screen">
+
+  <h1>settings</h1>
+
+  <div class="settings-row">
+    <label>glitch effects</label>
+    <button class="btn toggle-btn" id="toggle-glitch">on</button>
+  </div>
+
+  <div class="settings-row">
+    <label>text speed</label>
+    <button class="btn toggle-btn" id="toggle-speed">normal</button>
+  </div>
+
+  <div class="settings-row">
+    <label>static overlay</label>
+    <button class="btn toggle-btn" id="toggle-static">on</button>
+  </div>
+
+  <button class="btn" id="settings-back">back</button>
+
+</div>
+
+<div id="credits-screen">
+
+  <h1>credits</h1>
+
+  <div class="credits-list">
+    <p>made by be the root</p>
+    <p>with help from shadow</p>
+    <p>fonts from google</p>
+    <p>inspiration from old horror games</p>
+    <p>special thanks to the light</p>
+  </div>
+
+  <button class="btn" id="credits-back">back</button>
+
+</div>
+
 <div class="mainhead" id="warning-screen">
 
-<h1>INVESTININI</h1>
-
-
-
+<h1 id="main-title">INVESTNINI</h1>
 
 <p1>flash warning</p1>
 
-<button class="btn" id="continue-btn">continue</button>
+<p1 class="small-warn"> game contains flashing lights and unsettling imagery</p1>
 
+<button class="btn" id="continue-btn">continue</button>
 
 </div>
 
@@ -26,11 +93,23 @@
 
 <h1>Instructions</h1>
 
-<p1>add instructions hrer dumbo </p1>
+<p1>i don't have much time to explain</p1>
+<p1>the bulb is the only thing keeping it away</p1>
+<p1>click it until it turns on...don't stop clicking</p1>
 
-<button class="btn2" id="continue-btn2">continue</button>
+<p1>once the light is on, the notes will appear.
+read them carefully. they are the only truth left
+follow the sequences. candles. switches. the maze.
+if you hear breathing, don't move.</p1>
+
+<p1>you only get one try. don't let the light go out.</p1>
+
+
+<button class="btn" id="continue-btn2">continue</button>
 
 </div>
+
+<div id="whisper-box" class="whisper-hidden"></div>
 
 <script src="js/script.js"></script>
 

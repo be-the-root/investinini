@@ -8,11 +8,25 @@
 </head>
 <body>
 
+<div class="static-overlay"></div>
+<div class="vignette"></div>
+<div class="glitch-overlay" id="game-glitch"></div>
+
 <div class="game-container">
 
 <div class="left-side">
 
+<div class="top-bar">
+  <span class="level-indicator" id="level-indicator">level 1</span>
+  <span class="sanity-label">sanity</span>
+  <div class="sanity-bar-container">
+    <div class="sanity-bar" id="sanity-bar"></div>
+  </div>
+</div>
+
 <div class="question-window">
+
+<div id="level1-question">
 
 <button class="btn pixel-circle" id="light-btn">light</button>
 
@@ -26,11 +40,79 @@
 <div id="question-container">
 <h2>what do you think happend at 2:45 am</h2>
 <div class="options">
-<button class="btn option-btn" id="opt1">poweroutage</button>
+<button class="btn option-btn" id="opt1">me</button>
 <button class="btn option-btn" id="opt2">fire</button>
-<button class="btn option-btn" id="opt3">nothing</button>
+<button class="btn option-btn" id="opt3">the shadow</button>
 <button class="btn option-btn" id="opt4">idk</button>
 </div>
+</div>
+
+</div>
+
+<div id="level2-question">
+
+<div id="timer-bar-container">
+<div id="timer-bar"></div>
+</div>
+
+<div class="candle-row">
+<button class="candle" id="candle1"></button>
+<button class="candle" id="candle2"></button>
+<button class="candle" id="candle3"></button>
+<button class="candle" id="candle4"></button>
+<button class="candle" id="candle5"></button>
+</div>
+
+</div>
+
+<div id="level3-question">
+
+<canvas id="maze-canvas" width="420" height="420"></canvas>
+
+</div>
+
+<div id="level4-question">
+
+<div class="fuse-box">
+<button class="switch" id="switch1">1</button>
+<button class="switch" id="switch2">2</button>
+<button class="switch" id="switch3">3</button>
+<button class="switch" id="switch4">4</button>
+</div>
+
+<p class="l4-text" id="l4-text">press the switches in order: 1 3 2 4</p>
+
+</div>
+
+<div id="level5-question">
+
+<div class="keypad">
+<button class="key" data-key="1">1</button>
+<button class="key" data-key="2">2</button>
+<button class="key" data-key="3">3</button>
+<button class="key" data-key="4">4</button>
+<button class="key" data-key="5">5</button>
+<button class="key" data-key="6">6</button>
+<button class="key" data-key="7">7</button>
+<button class="key" data-key="8">8</button>
+<button class="key" data-key="9">9</button>
+<button class="key key-empty"></button>
+<button class="key" data-key="0">0</button>
+<button class="key key-empty"></button>
+</div>
+
+<div class="code-display" id="code-display">----</div>
+
+</div>
+
+<div id="level6-question">
+
+<div class="final-message">
+<h2 id="final-title">the bulb was never on</h2>
+<p class="l6-text" id="l6-text">you were the light all along</p>
+<button class="btn" id="final-btn">accept</button>
+</div>
+
 </div>
 
 </div>
@@ -45,23 +127,39 @@
 
 <div class="evidence-window">
 
-<p1>hints</p1>
+<div class="evidence-tabs">
+<button class="tab-btn active" data-tab="notes">notes</button>
+<button class="tab-btn" data-tab="items">items</button>
+<button class="tab-btn" data-tab="journal">journal</button>
+</div>
 
+<div class="tab-content" id="tab-notes">
+<p1>hand written notes</p1>
 <div id="collected-hints"></div>
+</div>
 
+<div class="tab-content hidden" id="tab-items">
+<div id="inventory-list"></div>
+</div>
+
+<div class="tab-content hidden" id="tab-journal">
+<div id="journal-list">
+<p class="journal-entry">entry 1: the fire started at 2:45 am. i was not home.</p>
+<p class="journal-entry">entry 2: there was no candle that night.</p>
+<p class="journal-entry">entry 3: someone was in the room with me.</p>
+</div>
 </div>
 
 </div>
 
-<div id="image-viewer">
-<img id="viewer-img" src="" alt="">
-<button class="btn" id="back-btn">back</button>
 </div>
 
 <div id="result-popup">
 <h2 id="popup-title"></h2>
 <button class="btn" id="popup-btn"></button>
 </div>
+
+<div id="room-darkness"></div>
 
 <script src="js/game.js"></script>
 
