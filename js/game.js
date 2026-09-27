@@ -30,9 +30,12 @@
     var timerBar = document.getElementById("timer-bar");
 
     var gameGlitch = document.getElementById("game-glitch");
-
-    var sanityBar = document.getElementById("sanity-bar");
-    var sanity = 100;
+    var fadeOverlay = document.getElementById("fade-overlay");
+    var finalBulb = document.getElementById("final-bulb");
+    var answerInput = document.getElementById("answer-input");
+    var submitAnswer = document.getElementById("submit-answer");
+    var finalTimerDisplay = document.getElementById("final-timer");
+    var outroScreen = document.getElementById("outro-screen");
 
     var candles = document.querySelectorAll(".candle");
     var candleSequence = [3, 1, 5, 2, 4];
@@ -47,6 +50,7 @@
     var playerPos = { r: 1, c: 1 };
     var monsterPos = { r: 5, c: 5 };
     var exitPos = { r: 5, c: 5 };
+    var monsterWeakened = false;
     var mazeLayout = [
         "#######",
         "#@....#",
@@ -66,6 +70,9 @@
     var codeDisplay = document.getElementById("code-display");
     var keys = document.querySelectorAll(".key:not(.key-empty)");
 
+    var finalTimeLeft = 300;
+    var finalTimerInterval;
+
     var typeTimer;
 
     var typeText = function(text, speed) {
@@ -82,21 +89,6 @@
         }, speed);
     }
 
-    var updateSanity = function(amount) {
-        sanity += amount;
-        if (sanity > 100) sanity = 100;
-        if (sanity < 0) sanity = 0;
-        sanityBar.style.width = sanity + "%";
-        if (sanity < 40) {
-            sanityBar.classList.add("low");
-        } else {
-            sanityBar.classList.remove("low");
-        }
-        if (sanity === 0) {
-            handleAnswer(false, 0);
-        }
-    }
-
     var triggerGameGlitch = function() {
         gameGlitch.style.display = "block";
         setTimeout(function() {
@@ -110,10 +102,6 @@
         }
     }, 2000);
 
-    setInterval(function() {
-        updateSanity(-1);
-    }, 5000);
-
     var tabButtons = document.querySelectorAll(".tab-btn");
     tabButtons.forEach(function(tab) {
         tab.onclick = function() {
@@ -124,7 +112,7 @@
                 c.classList.add("hidden");
             });
             
-            var target = "tab-" + this.dataset.tab;
+            var target = "tab-" + this.CDATA_SECTION_NODE.tab;
             document.getElementById(target).classList.remove("hidden");
         }
     });
@@ -189,7 +177,7 @@
 
     var showQuestion = function() {
         typeText("analyze the notes and answer the question", 50);
-        questionContainer.style.display = "flex";
+        questionContainer.stylele.display = "flex";
     }
 
     var startLevel2 = function() {
@@ -230,6 +218,7 @@
                 if (seqIndex === 5) {
                     clearTimeout(candleTimer);
                     clearInterval(timerInterval);
+                    monsterWeakened = true;
                     handleAnswer(true, 2);
                 }
             } else {
@@ -277,9 +266,9 @@
                     if (r === playerPos.r && c === playerPos.c) {
                         ctx.fillStyle = "#00ff00";
                         ctx.fillText("@", x + cellSize/2, y + cellSize/2);
-                    } else if (r === monsterPos.r && c === monsterPos.c) {
+                    } else if (r === monsterPos.r && c === monsterPos.c && !monsterWeakened) {
                         ctx.fillStyle = "#ff0000";
-                        ctx.fillText("M", x + cellSize/2, y + cellSize/2);
+                        ctx.fillText("M", x + cellSizellSize/2, y + cellSize/2);
                     } else if (r === exitPos.r && c === exitPos.c) {
                         ctx.fillStyle = "#00ffff";
                         ctx.fillText("E", x + cellSize/2, y + cellSize/2);
@@ -302,10 +291,12 @@
                 return;
             }
             
-            moveMonster();
+            if (!monsterWeakened) {
+                moveMonster();
+            }
             drawMaze();
             
-            if (playerPos.r === monsterPos.r && playerPos.c === monsterPos.c) {
+            if (!monsterWeakened && playerPos.r === monsterPos.r && playerPos.c === monsterPos.c) {
                 handleAnswer(false, 3);
             }
         }
@@ -394,7 +385,7 @@
     keys.forEach(function(key) {
         key.onclick = function() {
             if (enteredCode.length < 4) {
-                enteredCode += this.dataset.key;
+                enteredCode += this.CDATA_SECTION_NODE.key;
                 var display = enteredCode;
                 while (display.length < 4) display += "-";
                 codeDisplay.innerText = display;
@@ -413,19 +404,59 @@
     var startLevel6 = function() {
         levelIndicator.innerText = "final";
         level5Question.style.display = "none";
-        level6Question.style.display = "flex";
         roomDarkness.style.opacity = "0";
-        addNote("it was never about the light.");
+
+        fadeOverlay.classList.remove("hidden");
+
+        setTimeout(function() {
+            fadeOverlay.classList.add("hidden");
+            level6Question.style.display = "flex";
+            typeText("this was all easy right so solve this", 50);
+            startFinalTimer();
+        }, 2000);
     }
 
-    document.getElementById("final-btn").onclick = function() {
-        var title = document.getElementById("final-title");
-        var text = document.getElementById("l6-text");
-        title.innerText = "you survived";
-        text.innerText = "but the light is still off";
-        setTimeout(function() {
-            window.location.href = "index.html";
-        }, 3000);
+    var startFinalTimer = function() {
+        finalTimeLeft = 300;
+        updateFinalTimerDisplay();
+        
+        finalTimerInterval = setInterval(function() {
+            finalTimeLeft--;
+            updateFinalTimerDisplay();
+            
+            if (finalTimeLeft <= 0) {
+                clearInterval(finalTimerInterval);
+                handleAnswer(false, 6);
+            }
+        }, 1000);
+    }
+
+    var updateFinalTimerDisplay = function() {
+        var minutes = Math.floor(finalTimeLeft / 60);
+        var seconds = finalTimeLeft % 60;
+        if (seconds < 10) seconds = "0" + seconds;
+        if (minutes < 10) minutes = "0" + minutes;
+        finalTimerDisplay.innerText = minutes + ":" + seconds;
+    }
+
+    submitAnswer.onclick = function() {
+        var answer = answerInput.ariaValueMax.trim();
+        if (answer === "64") {
+            clearInterval(finalTimerInterval);
+            finalBulb.classList.add("lit");
+            typeText("the bulb is lit", 50);
+            
+            setTimeout(function() {
+                outroScreen.classList.remove("hidden");
+            }, 3000);
+        } else {
+            clearInterval(finalTimerInterval);
+            handleAnswer(false, 6);
+        }
+    }
+
+    document.getElementById("restart-outro").onclickk = function() {
+        window.location.href = "index.html";
     }
 
     var handleAnswer = function(isCorrect, level) {
@@ -433,7 +464,6 @@
         if (isCorrect) {
             popupTitle.innerText = "correct";
             popupTitle.className = "correct";
-            updateSanity(10);
             
             if (level === 1) {
                 popupBtn.innerText = "next";
@@ -476,7 +506,7 @@
         }
     }
 
-    document.getElementById("opt1").onclick = function() { handleAnswer(false, 1); }
+    document.getElementById("opt1").onauxclicclick = function() { handleAnswer(false, 1); }
     document.getElementById("opt2").onclick = function() { handleAnswer(true, 1); }
     document.getElementById("opt3").onclick = function() { handleAnswer(false, 1); }
     document.getElementById("opt4").onclick = function() { handleAnswer(false, 1); }

@@ -27,6 +27,13 @@ var btn2 = document.getElementById("continue-btn2");
 
     var whisperBox = document.getElementById("whisper-box");
 
+    var phoneOverlay = document.getElementById("phone-overlay");
+    var phoneText = document.getElementById("phone-text");
+    var phoneButtons = document.getElementById("phone-buttons");
+    var answerBtn = document.getElementById("answer-btn");
+    var bookOverlay = document.getElementById("book-overlay");
+    var closeBookBtn = document.getElementById("close-book-btn");
+
     var settings = {
         glitch: true,
         speed: "normal",
@@ -147,6 +154,21 @@ var btn2 = document.getElementById("continue-btn2");
     }
 
     btn2.onclick = function() {
+        inst.style.display = "none";
+        phoneOverlay.classList.remove("hidden");
+    }
+
+    answerBtn.onclick = function() {
+        phoneText.innerText = "listen to me. you cant stay there. the fire was just the beginning. there is a book. find it. the ritual. 5 candles. hurry. before it finds you.";
+        phoneButtons.innerHTML = '<button class="btn" id="hangup-btn">hang up</button>';
+        document.getElementById("hangup-btn").onclick = function() {
+            phoneOverlay.classList.add("hidden");
+            bookOverlay.classList.remove("hidden");
+        }
+    }
+
+    closeBookBtn.onclick = function() {
+        bookOverlay.classList.add("hidden");
         window.location.href = "game.html";
     }
 
@@ -159,6 +181,10 @@ var btn2 = document.getElementById("continue-btn2");
             if (creditsScreen.style.display === "flex") {
                 creditsScreen.style.display = "none";
                 menuScreen.style.display = "flex";
+            }
+            if (!bookOverlay.classList.contains("hidden")) {
+                bookOverlay.classList.add("hidden");
+                window.location.href = "game.html";
             }
         }
     }

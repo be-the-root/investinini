@@ -64,6 +64,21 @@ body{
     100% { clip-path: inset(80% 0 10% 0); transform: translateX(-5px); }
 }
 
+#fade-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 2s ease;
+    z-index: 9000;
+}
+
+#fade-overlay:not(.hidden) {
+    opacity: 1;
+}
+
 .game-container{
     display: flex;
     width: 100%; height: 100vh;
@@ -91,32 +106,6 @@ body{
     font-size: 0.8rem;
     color: #aaaaaa;
     letter-spacing: 3px;
-}
-
-.sanity-label {
-    font-family: 'VT323', monospace;
-    font-size: 1.1rem;
-    color: #888888;
-    letter-spacing: 2px;
-    margin-left: auto;
-}
-
-.sanity-bar-container {
-    width: 150px;
-    height: 12px;
-    border: 1px solid #555555;
-    background: #111111;
-}
-
-.sanity-bar {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, #00ff00, #88ff00);
-    transition: width 0.5s ease, background 0.5s ease;
-}
-
-.sanity-bar.low {
-    background: linear-gradient(90deg, #ff0000, #ff6600);
 }
 
 .question-window{
@@ -533,25 +522,117 @@ p1{
     flex-direction: column;
     align-items: center;
     gap: 30px;
+    width: 100%;
 }
 
-.final-message {
+.final-puzzle {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 25px;
+    text-align: center;
+    width: 100%;
+}
+
+.final-puzzle h2 {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.2rem;
+    color: #ff0000;
+    text-shadow: 0 0 15px red;
+    animation: horror-flicker 2s infinite;
+    margin: 0;
+    line-height: 1.8;
+}
+
+.equation {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    color: #ffffff;
+    letter-spacing: 3px;
+    padding: 20px;
+    border: 2px dashed #555555;
+    background: #0a0a0a;
+}
+
+.bulb {
+    width: 80px;
+    height: 100px;
+    background: #222222;
+    border: 3px solid #555555;
+    border-radius: 50% 50% 20% 20%;
+    position: relative;
+    transition: all 0.5s ease;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.8);
+}
+
+.bulb::after {
+    content: '';
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 15px;
+    background: #333333;
+    border: 2px solid #555555;
+    border-radius: 0 0 5px 5px;
+}
+
+.bulb.lit {
+    background: #fffde7;
+    border-color: #ffffff;
+    box-shadow: 0 0 40px #ffcc00, 0 0 80px #ff9900, inset 0 0 30px #ffcc00;
+}
+
+.answer-input {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1.5rem;
+    padding: 15px;
+    background: #0a0a0a;
+    border: 2px solid #555555;
+    color: #00ff00;
+    text-align: center;
+    width: 200px;
+    letter-spacing: 5px;
+    outline: none;
+}
+
+.answer-input:focus {
+    border-color: #00ff00;
+    box-shadow: 0 0 15px rgba(0, 255, 0, 0.3);
+}
+
+.final-timer {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 2rem;
+    color: #ff0000;
+    text-shadow: 0 0 15px red;
+    letter-spacing: 5px;
+}
+
+#outro-screen {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
     gap: 30px;
     text-align: center;
 }
 
-#final-title {
+#outro-screen h2 {
     font-family: 'Press Start 2P', cursive;
-    font-size: 1.5rem;
-    color: #ff0000;
-    text-shadow: 0 0 20px red;
+    font-size: 2rem;
+    color: #00ff00;
+    text-shadow: 0 0 20px #00ff00;
     animation: horror-flicker 2s infinite;
 }
 
-.l6-text {
+#outro-screen p {
     font-family: 'VT323', monospace;
     font-size: 1.5rem;
     color: #888888;

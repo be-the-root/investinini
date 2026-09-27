@@ -12,16 +12,14 @@
 <div class="vignette"></div>
 <div class="glitch-overlay" id="game-glitch"></div>
 
-<div class="game-container">
+<div id="fade-overlay" class="hidden"></div>
+
+<div class="game-container" id="main-game">
 
 <div class="left-side">
 
 <div class="top-bar">
   <span class="level-indicator" id="level-indicator">level 1</span>
-  <span class="sanity-label">sanity</span>
-  <div class="sanity-bar-container">
-    <div class="sanity-bar" id="sanity-bar"></div>
-  </div>
 </div>
 
 <div class="question-window">
@@ -38,7 +36,7 @@
 </div>
 
 <div id="question-container">
-<h2>what do you think happend at 2:45 am</h2>
+<h2>who started the fire at 2:45 am</h2>
 <div class="options">
 <button class="btn option-btn" id="opt1">me</button>
 <button class="btn option-btn" id="opt2">fire</button>
@@ -107,10 +105,20 @@
 
 <div id="level6-question">
 
-<div class="final-message">
-<h2 id="final-title">the bulb was never on</h2>
-<p class="l6-text" id="l6-text">you were the light all along</p>
-<button class="btn" id="final-btn">accept</button>
+<div class="final-puzzle">
+
+<h2>solve this equation to light the bulb</h2>
+
+<div class="equation">(8 * 7) + (64 / 8) - 12 + √144 = ?</div>
+
+<div id="final-bulb" class="bulb"></div>
+
+<input type="text" id="answer-input" class="answer-input" placeholder="...">
+
+<div id="final-timer" class="final-timer">05:00</div>
+
+<button class="btn" id="submit-answer">submit</button>
+
 </div>
 
 </div>
@@ -146,7 +154,7 @@
 <div id="journal-list">
 <p class="journal-entry">entry 1: the fire started at 2:45 am. i was not home.</p>
 <p class="journal-entry">entry 2: there was no candle that night.</p>
-<p class="journal-entry">entry 3: someone was in the room with me.</p>
+<p class="journal-entrry">entry 3: someone was in the room with me.</p>
 </div>
 </div>
 
@@ -157,6 +165,12 @@
 <div id="result-popup">
 <h2 id="popup-title"></h2>
 <button class="btn" id="popup-btn"></button>
+</div>
+
+<div id="outro-screen" class="hidden">
+<h2>you survived</h2>
+<p>but the light is still off</p>
+<button class="btn" id="restart-outro">restart</button>
 </div>
 
 <div id="room-darkness"></div>
