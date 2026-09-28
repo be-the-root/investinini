@@ -25,5 +25,31 @@ INVESTNINI is short, browser-based horror puzzle game. It stars you, a survivor 
 5. Don't die
 6. Solve the final equation
 
+
+## Screenshots
+
+
 ![main menu](screenshots/img.png)
 ![the game](screenshots/img1.png)
+
+
+# Getting Started
+
+### Dependencies
+
+* Any modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, Brave, etc.)
+* No installation, compilers, or server dependencies required.
+
+### Installing
+
+1. Clone the repository or download the project files directly:
+   ```bash
+   git clone [https://github.com/be-the-root/investinini.git](https://github.com/be-the-root/investinini.git)
+/
+# help
+feel free to open a pull request 
+
+# licences
+
+open for everyone 
+mit
