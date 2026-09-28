@@ -30,6 +30,7 @@
     var timerBar = document.getElementById("timer-bar");
 
     var gameGlitch = document.getElementById("game-glitch");
+    var gameFlicker = document.getElementById("game-flicker");
     var fadeOverlay = document.getElementById("fade-overlay");
     var finalBulb = document.getElementById("final-bulb");
     var answerInput = document.getElementById("answer-input");
@@ -102,6 +103,15 @@
         }
     }, 2000);
 
+    setInterval(function() {
+        if (Math.random() > 0.8) {
+            gameFlicker.style.opacity = "0.15";
+            setTimeout(function() {
+                gameFlicker.style.opacity = "0";
+            }, 80);
+        }
+    }, 3500);
+
     var tabButtons = document.querySelectorAll(".tab-btn");
     tabButtons.forEach(function(tab) {
         tab.onclick = function() {
@@ -112,7 +122,7 @@
                 c.classList.add("hidden");
             });
             
-            var target = "tab-" + this.CDATA_SECTION_NODE.tab;
+            var target = "tab-" + this.dataset.tab;
             document.getElementById(target).classList.remove("hidden");
         }
     });
@@ -177,7 +187,7 @@
 
     var showQuestion = function() {
         typeText("analyze the notes and answer the question", 50);
-        questionContainer.stylele.display = "flex";
+        questionContainer.style.display = "flex";
     }
 
     var startLevel2 = function() {
@@ -268,7 +278,7 @@
                         ctx.fillText("@", x + cellSize/2, y + cellSize/2);
                     } else if (r === monsterPos.r && c === monsterPos.c && !monsterWeakened) {
                         ctx.fillStyle = "#ff0000";
-                        ctx.fillText("M", x + cellSizellSize/2, y + cellSize/2);
+                        ctx.fillText("M", x + cellSize/2, y + cellSize/2);
                     } else if (r === exitPos.r && c === exitPos.c) {
                         ctx.fillStyle = "#00ffff";
                         ctx.fillText("E", x + cellSize/2, y + cellSize/2);
@@ -385,7 +395,7 @@
     keys.forEach(function(key) {
         key.onclick = function() {
             if (enteredCode.length < 4) {
-                enteredCode += this.CDATA_SECTION_NODE.key;
+                enteredCode += this.dataset.key;
                 var display = enteredCode;
                 while (display.length < 4) display += "-";
                 codeDisplay.innerText = display;
@@ -413,7 +423,7 @@
             level6Question.style.display = "flex";
             typeText("this was all easy right so solve this", 50);
             startFinalTimer();
-        }, 2000);
+        }, 2500);
     }
 
     var startFinalTimer = function() {
@@ -440,7 +450,7 @@
     }
 
     submitAnswer.onclick = function() {
-        var answer = answerInput.ariaValueMax.trim();
+        var answer = answerInput.value.trim();
         if (answer === "64") {
             clearInterval(finalTimerInterval);
             finalBulb.classList.add("lit");
@@ -455,7 +465,7 @@
         }
     }
 
-    document.getElementById("restart-outro").onclickk = function() {
+    document.getElementById("restart-outro").onclick = function() {
         window.location.href = "index.html";
     }
 
@@ -506,7 +516,7 @@
         }
     }
 
-    document.getElementById("opt1").onauxclicclick = function() { handleAnswer(false, 1); }
+    document.getElementById("opt1").onclick = function() { handleAnswer(false, 1); }
     document.getElementById("opt2").onclick = function() { handleAnswer(true, 1); }
     document.getElementById("opt3").onclick = function() { handleAnswer(false, 1); }
     document.getElementById("opt4").onclick = function() { handleAnswer(false, 1); }

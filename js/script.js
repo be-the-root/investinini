@@ -5,6 +5,7 @@ var btn2 = document.getElementById("continue-btn2");
 
     var glitch = document.getElementById("glitch1");
     var title = document.getElementById("main-title");
+    var flicker = document.getElementById("flicker");
 
     var loadingScreen = document.getElementById("loading-screen");
     var menuScreen = document.getElementById("menu-screen");
@@ -50,7 +51,9 @@ var btn2 = document.getElementById("continue-btn2");
         "you are being watched",
         "do not trust the shadow",
         "the fire was a warning",
-        "keep the light on"
+        "keep the light on",
+        "he is inside the walls",
+        "the code is not what it seems"
     ];
 
     var loadProgress = 0;
@@ -82,6 +85,15 @@ var btn2 = document.getElementById("continue-btn2");
     }, 3000);
 
     setInterval(function() {
+        if (Math.random() > 0.85) {
+            flicker.style.opacity = "0.15";
+            setTimeout(function() {
+                flicker.style.opacity = "0";
+            }, 80);
+        }
+    }, 4000);
+
+    setInterval(function() {
         if (Math.random() > 0.9) {
             var whispers = [
                 "it is behind you",
@@ -89,7 +101,10 @@ var btn2 = document.getElementById("continue-btn2");
                 "the light lies",
                 "you started the fire",
                 "remember 2:45",
-                "help me"
+                "help me",
+                "he sees you",
+                "the book was a trap",
+                "your name is on the wall"
             ];
             whisperBox.innerText = whispers[Math.floor(Math.random() * whispers.length)];
             whisperBox.classList.remove("whisper-hidden");
@@ -97,7 +112,7 @@ var btn2 = document.getElementById("continue-btn2");
                 whisperBox.classList.add("whisper-hidden");
             }, 2500);
         }
-    }, 12000);
+    }, 9000);
 
     menuStart.onclick = function() {
         menuScreen.style.display = "none";
