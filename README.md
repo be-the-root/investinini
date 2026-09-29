@@ -40,6 +40,9 @@ INVESTNINI is short, browser-based horror puzzle game. It stars you, a survivor 
 * Any modern web browser (Google Chrome, Mozilla Firefox, Microsoft Edge, Brave, etc.)
 * No installation, compilers, or server dependencies required.
 
+### built with
+* languages used- html, css and javascript
+* tools used- vscode 
 ### Installing
 
 1. Clone the repository or download the project files directly:
